@@ -190,7 +190,6 @@ public class DispatcherServlet extends HttpServlet {
             doDispatch(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
-            resp.getWriter().write("500 Exception");
         }
 
     }
@@ -209,7 +208,7 @@ public class DispatcherServlet extends HttpServlet {
         Method method = this.handlerMapping.get(url);
         String beanName = toLowerFirstCase(method.getDeclaringClass().getSimpleName());
         Map<String, String[]> params = req.getParameterMap();
-        method.invoke(ioc.get(beanName),req, resp, params.get("name")[0]);
+        method.invoke(ioc.get(beanName), req, resp, params.get("name")[0]);
     }
 
 }
